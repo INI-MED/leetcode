@@ -26,3 +26,28 @@ def three_sum(nums: List[int]) -> List[List[int]]:
 
     return res
 
+
+def three_sum1(nums: List[int]) -> List[List[int]]:
+    res = []
+    nums.sort()
+
+    for ind, val in enumerate(nums):
+        if ind > 0 and nums[ind] == nums[ind - 1]:
+            continue
+
+        l, r = ind + 1, len(nums) - 1
+
+        while l < r:
+           three_sum = val + nums[l] + nums[r]
+
+           if three_sum < 0:
+               l += 1
+           elif three_sum > 0:
+               r -= 1
+           else:
+               res.append([val, nums[l], nums[r]])
+               l += 1
+               # [-2, -2, 0, 0, 2, 2] 
+               while nums[l] == nums[l - 1] and l < r:
+                    l += 1
+    return res
