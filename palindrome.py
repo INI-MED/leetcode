@@ -1,22 +1,22 @@
 
+
 def right_valid_palindrome(string: str) -> bool:
+
     left, right = 0, len(string) - 1
 
     while left < right:
-        # while cycles to check every symbool in string
-        while left < right and check_symbool(string[left]):
+
+        if left < right and not check_symbool(s=string[left]):
             left += 1
-        while left < right and check_symbool(string[right]):
+        if right > left and not check_symbool(s=string[right]):
             right -= 1
+
         if string[left] != string[right]:
-            print(string[left], string[right])
             return False
-        
-        # updating pointers!!!!
         left += 1
         right -= 1
-    return True
 
+    return True
 
 def valid_palindrome(string: str) -> bool:
     left, right = 0, len(string) - 1
@@ -24,7 +24,7 @@ def valid_palindrome(string: str) -> bool:
     while left < right:
         if left < right and check_symbool(string[left]):
             left += 1
-        if left < rigth and check_symbool(string[right]):
+        if left < right and check_symbool(string[right]):
             right -= 1
 
         if string[left] != string[right]:
