@@ -34,5 +34,19 @@ def longest_sequence(nums: List[int]) -> int:
 
     return freq
 
+def repeat1(nums: List[int]) -> int:
+    nums_set = set(nums)
+
+    true_length = 0
+    for item in nums:
+        if item - 1 in nums_set:
+            lenght = 0
+            while item - 1 in nums_set:  # checking the right neighbour so we adding to item
+                length += 1
+
+            true_length = max(true_length, length)
+
+    return true_length
+
 if __name__ == "__main__":
     print(right_sequence([100, 4, 200, 1, 3, 2]))

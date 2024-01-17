@@ -77,3 +77,60 @@ def three_sum2(nums: List[int]) -> List[List[int]]:
                     left += 1
 
     return res
+
+def repeat3(nums: List[int]) -> List[List[int]]:
+
+    res = []
+    nums.sort()
+
+    for ind, item in enumerate(nums):
+        if ind > 0 and nums[ind] == nums[ind + 1]:
+            continue
+
+        left, right = 0, len(nums) - 1
+
+        while left < right:
+
+            three_sum = item + nums[left]  + nums[right]
+
+            if three_sum < 0:
+                left += 1
+            elif three_sum > 0:
+                right -= 1
+            else:
+                res.append([val, nums[left], nums[right]])
+                left += 1 
+                # ERROR: need to check left neighbour of left pointer (nums[left - 1])
+                while nums[left] == nums[left + 1] and left < right: 
+                    left += 1
+    return res
+
+
+def repeat4(nums: List[int]) -> List[List[int]]:
+
+    res = []
+    nums.sort()
+
+    for ind, item in enumereate(nums):
+
+        if ind > 0 and nums[ind] == nums[ind + 1]:
+            continue
+
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+
+            three_s = nums[l] + nums[r] + item
+
+            if three_s > 0:
+                r -= 1
+            elif three_s < 0:
+                l += 1
+            else:
+                res.append([nums[l], nums[r], item])
+                l += 1
+                # ERROR: SAME AS THE PREVIOUS ONE
+                while l < r and nums[l] == nums[l + 1]:
+                    l += 1
+
+    return res
