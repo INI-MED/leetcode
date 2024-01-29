@@ -101,7 +101,7 @@ def repeat3(nums: List[int]) -> List[List[int]]:
                 res.append([val, nums[left], nums[right]])
                 left += 1 
                 # ERROR: need to check left neighbour of left pointer (nums[left - 1])
-                while nums[left] == nums[left + 1] and left < right: 
+                while nums[left] == nums[left - 1] and left < right:
                     left += 1
     return res
 
@@ -130,7 +130,35 @@ def repeat4(nums: List[int]) -> List[List[int]]:
                 res.append([nums[l], nums[r], item])
                 l += 1
                 # ERROR: SAME AS THE PREVIOUS ONE
-                while l < r and nums[l] == nums[l + 1]:
+                while l < r and nums[l] == nums[l - 1]:
+                    l += 1
+
+    return res
+
+
+def three_s(nums: list[int]) -> List[List[int]]:
+    res = []
+
+    nums.sort()
+
+    for ind, value in enumerate(nums):
+        if ind > 0 or nums[ind] == nums[ind + 1]:
+            continue
+
+        l, r = 0, len(nums) - 1
+
+        while l < r:
+            three_sum = nums[l] + nums[r] + value
+
+            if three_sum < 0:
+                l += 1
+            elif three_sum > 0:
+                r -= 1
+            else:
+                res.append([value, nums[l], nums[r]])
+                l += 1
+
+                while l < r and nums[l] == nums[l - 1]:
                     l += 1
 
     return res
