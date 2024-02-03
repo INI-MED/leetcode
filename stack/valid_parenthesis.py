@@ -27,6 +27,22 @@ def valid_pairs(pairs: str) -> bool:
     return True if not stack else False
 
 
+def repeat1(string: str) -> bool:
+    stack = []
+
+    pairs_hash = {"]": "[", ")": "(", "}": "{"}
+
+    for char in string:
+        if char in pairs_hash:
+            if stack and stack[-1] == pairs_hash[char]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(char)
+    return True if not stack else False
+
+
 if __name__ == '__main__':
     f = valid_pairs("((()))")
     print(f)
